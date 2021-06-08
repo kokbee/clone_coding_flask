@@ -10,3 +10,5 @@
 - MarkupSafe 2.0
 - virtualenv
 
+## Run
+    sh run.sh
