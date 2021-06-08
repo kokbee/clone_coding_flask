@@ -9,6 +9,7 @@
 - Jinja2 3.0
 - MarkupSafe 2.0
 - virtualenv
+- Pymongo 3.11.4
 
 ## Run
     sh run.sh

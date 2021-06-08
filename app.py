@@ -93,6 +93,47 @@ def user():
 
     cursor = db.User(db="address", collection="users",userid=reqUser)
     data = cursor.getUser()
-    close = cursor.close()
+    close = cursor.close
+
+    return jsonify(data)
+
+
+@app.route('/api/folders', methods=['GET'])
+def folders():
+    '''
+    폴더의 리스트 및 용량 API
+    '''
+
+    reqName = request.args.get("Name")
+
+    cursor = db.Folder(db="folder", collection="data",name=reqName)
+    data = cursor.getFolder()
+    close = cursor.close
+
+    return jsonify(data)
+
+
+@app.route('/api/logs', methods=['GET'])
+def logs():
+    '''
+    폴더의 리스트 및 용량 API
+    '''
+    beforeDate = nowdatetime - datetime.timedelta(days=7)
+    afterDate = nowdatetime - datetime.timedelta(days=1)
+
+    reqStart = request.args.get("Start")
+    reqEnd = request.args.get("End")
+
+    # 값이 있을경우
+    if reqStart and reqEnd:
+        startDate = datetime.datetime.strptime(str(reqStart),"%Y-%m-%d")
+        endDate =datetime.datetime.strptime(str(reqEnd),"%Y-%m-%d")
+    else:
+        startDate = beforeDate.strftime("%Y-%m-%d")
+        endDate = afterDate.strftime("%Y-%m-%d")
+
+    cursor = db.Log(db="logs", collection="data",start=str(startDate),end=str(endDate))
+    data = cursor.getLogs()
+    close = cursor.close
 
     return jsonify(data)
