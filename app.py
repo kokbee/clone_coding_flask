@@ -47,7 +47,7 @@ def years():
 
 
 @app.route('/api/date', methods=['GET'])
-def resultdate():
+def dates():
     '''
     날짜 범위 API
     '''
@@ -77,5 +77,17 @@ def resultdate():
     data = {}
     data.update({"date" : sorted(dates)})
     data.update({"range" : len(dates)})
+
+    return jsonify(data)
+
+
+@app.route('/api/user', methods=['GET'])
+def user():
+    '''
+    유저 API
+    '''
+
+
+    data = {}
 
     return jsonify(data)
