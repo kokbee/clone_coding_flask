@@ -5,10 +5,8 @@ import sys,os,re
 from flask import Flask
 
 app = Flask(__name__)
-
-@app.route('/index', methods=['GET','POST'])
+ 
+@app.route('/')
+@app.route('/index')
 def index():
-    return "Hello World"
-
-def app():
-    return app
+    return 'Clone Flask'
