@@ -4,6 +4,8 @@
 from flask import Flask, jsonify, request, escape
 import datetime
 
+from core import database as db
+
 app = Flask(__name__)
 
 nowdatetime = datetime.datetime.now()
@@ -87,7 +89,10 @@ def user():
     유저 API
     '''
 
+    reqUser = request.args.get("User")
 
-    data = {}
+    cursor = db.User(db="address", collection="users",userid=reqUser)
+    data = cursor.getUser()
+    close = cursor.close()
 
     return jsonify(data)
