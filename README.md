@@ -8,4 +8,5 @@
 - Werkzeug2.0
 - Jinja2 3.0
 - MarkupSafe 2.0
+- virtualenv
 
